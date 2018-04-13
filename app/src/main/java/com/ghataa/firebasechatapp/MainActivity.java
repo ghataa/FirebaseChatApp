@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
@@ -44,11 +45,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // User is already signed in. Therefore, display a welcome Toast
             Toast.makeText(this,
-                    "Welcome " + FirebaseAuth.getInstance()
-                            .getCurrentUser()
-                            .getDisplayName(),
-                    Toast.LENGTH_LONG)
-                    .show();
+                    getString(R.string.welcome_toast,
+                            FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
+                    Toast.LENGTH_LONG).show();
 
             displayChatMessages();
         }
@@ -82,15 +81,13 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == SIGN_IN_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this,
-                        "Successfully signed in. Welcome!",
-                        Toast.LENGTH_LONG)
-                        .show();
+                        R.string.sign_in_success_toast,
+                        Toast.LENGTH_LONG).show();
                 displayChatMessages();
             } else {
                 Toast.makeText(this,
-                        "We couldn't sign you in. Please try again later.",
-                        Toast.LENGTH_LONG)
-                        .show();
+                        R.string.sign_in_success_toast,
+                        Toast.LENGTH_LONG).show();
 
                 // Close the app
                 finish();
@@ -140,9 +137,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(MainActivity.this,
-                                    "You have been signed out.",
-                                    Toast.LENGTH_LONG)
-                                    .show();
+                                    R.string.sign_out_toast,
+                                    Toast.LENGTH_LONG).show();
 
                             // Close activity
                             finish();
