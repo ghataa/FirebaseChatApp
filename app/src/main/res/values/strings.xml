@@ -4,7 +4,10 @@
     <string name="input_text_hint">Input</string>
 
     <string name="welcome_toast">Welcome %s</string>
+
     <string name="sign_in_success_toast">Successfully signed in. Welcome!</string>
     <string name="sign_in_failed_toast">We could not sign you in. Please try again later.</string>
+
+    <string name="sign_out">Sign out</string>
     <string name="sign_out_toast">You have been signed out.</string>
 </resources>
