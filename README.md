@@ -15,9 +15,9 @@ Package name: pte.example.firebasechatapp
 
 Select Phone and Tablet with target API 21 (Lollipop)
 
-## 2. Define layout for MainActivity (activity_main.xml)
+## 2. Define layout for MainActivity
 
-2.1
+2.1 The activity_main.xml looks like this
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -54,6 +54,8 @@ Select Phone and Tablet with target API 21 (Lollipop)
             android:layout_height="wrap_content"
             android:hint="@string/input_text_hint" />
     </android.support.design.widget.TextInputLayout>
+activity_main.xml)
+activity_main.xml)
 
     <ListView
         android:id="@+id/list_of_messages"
@@ -103,7 +105,7 @@ Now build your project and check the app!
 
 ## 3. Create model class and layout for a chat message
 
-3.1 Add a new package with name of "model" and create a class for firebase chat message
+3.1 Add a new package with name of "model" and create a class for Firebase chat message
 
 ```java
 // Firebase model
@@ -362,3 +364,64 @@ adapter = new FirebaseListAdapter<ChatMessage>(options) {
 
 listOfMessages.setAdapter(adapter);
 ```
+
+## 7. Handle sign-out
+
+7.1 We'll use menu for the sign-out option. Create a "menu" Android Resource Directory under "res" first and add a new xml file (main_menu.xml) with the following content
+
+```xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_sign_out"
+        android:title="@string/sign_out" />
+
+</menu>
+```
+
+You also have to define the missing string resource
+
+```xml
+<string name="sign_out">Sign out</string>
+```
+
+7.2 Now let's instantiate it in the MainActivity
+
+```java
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.main_menu, menu);
+    return true;
+}
+```
+
+7.3 And finally handle the click event in the onOptionsItemSelected() method
+
+```java
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.menu_sign_out) {
+        AuthUI.getInstance().signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(MainActivity.this,
+                                R.string.sign_out_toast,
+                                Toast.LENGTH_LONG).show();
+
+                        // Close activity
+                        finish();
+                    }
+                });
+    }
+    return true;
+}
+```
+
+One other string resource is missing, so just add it
+
+```xml
+<string name="sign_out_toast">You have been signed out.</string>
+```
+
+Build your app and happy chatting! :)
