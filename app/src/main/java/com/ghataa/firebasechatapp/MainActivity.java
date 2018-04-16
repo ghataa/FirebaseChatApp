@@ -86,14 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 displayChatMessages();
             } else {
                 Toast.makeText(this,
-                        R.string.sign_in_success_toast,
+                        R.string.sign_in_failed_toast,
                         Toast.LENGTH_LONG).show();
 
                 // Close the app
                 finish();
             }
         }
-
     }
 
     private void displayChatMessages() {

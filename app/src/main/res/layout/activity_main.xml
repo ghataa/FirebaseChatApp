@@ -17,7 +17,6 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:src="@drawable/ic_send_white_24px"
-        android:tint="@android:color/white"
         app:fabSize="mini" />
 
     <android.support.design.widget.TextInputLayout
