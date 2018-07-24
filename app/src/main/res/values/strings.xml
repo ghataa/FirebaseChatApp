@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">FirebaseChatApp</string>
+    <string name="app_name">FirebaseChatApp</string>ű
+
+    <string name="input_text_hint">Input</string>
 </resources>
